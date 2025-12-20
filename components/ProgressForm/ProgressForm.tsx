@@ -3,7 +3,6 @@
 import * as React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
-import { toast } from "sonner"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -62,13 +61,13 @@ export function ProgressReportForm() {
 
   async function onSubmit(values: FormValues) {
   setLoading(true)
+  console.log("ProgressForm: submitting", values)
 
   try {
     await submitProgressReport(values)
-    toast.success("Progress submitted successfully")
     form.reset()
-  } catch {
-    toast.error("Something went wrong. Please try again.")
+  } catch (err) {
+    console.error("ProgressForm: submit error", err)
   } finally {
     setLoading(false)
   }
@@ -77,7 +76,8 @@ export function ProgressReportForm() {
   return (
     <Card className="w-full sm:max-w-md">
       <CardHeader>
-        <CardTitle>Daily Progress Update</CardTitle>
+        <CardTitle>Workflow Guard</CardTitle>
+        <CardDescription className="text-sidebar-ring">Daily progress update</CardDescription>
         <CardDescription>
           Share what you worked on today. This goes directly to the team.
         </CardDescription>
