@@ -9,6 +9,7 @@ export async function submitProgressReport(data: FormValues) {
             body: JSON.stringify({
                 name: data.name,
                 progress: data.progress,
+                blockers: data.blockers,
             }),
         }
     )
