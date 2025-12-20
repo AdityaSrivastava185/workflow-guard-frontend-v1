@@ -21,7 +21,7 @@ export async function submitProgressReport(data: FormValues) {
     console.log("submitProgressReport: response status", res.status, respText)
 
     if (!res.ok) {
-        toast.error("Something went wrong. Please try again.")
+        toast.error("Backend is not spinning up . Please try again.")
         throw new Error(`Failed to submit feedback: ${respText}`)
     }
 
